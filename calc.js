@@ -1,17 +1,25 @@
 //mean
 function mean(nums) {
-  return nums.reduce((x, y) => x + y) / nums.length
+  if (nums.length === 0) return 0
+  return (
+    nums.reduce((acc, cur) => {
+      return acc + cur
+    }) / nums.length
+  )
 }
 
 //median
 function median(nums) {
-  let middle = Math.floor(nums.length / 2)
+  nums.sort((x, y) => x - y)
+  let middleNum = Math.floor(nums.length / 2)
+  let median
 
-  nums = [...nums].sort((x, y) => x - y)
-
-  return nums.length % 2 !== 0
-    ? nums[middle]
-    : (nums[middle - 1] + nums[middle]) / 2
+  if (nums.length % 2 === 0) {
+    median = (nums[middleNum] + nums[middleNum - 1]) / 2
+  } else {
+    median = nums[middleNum]
+  }
+  return median
 }
 
 //frequency counter function
